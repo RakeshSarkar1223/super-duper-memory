@@ -1,18 +1,17 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 // import 'bootstrap/dist/css/bootstrap.min.css';
-function SignUp() {
+function Invest() {
   return (
-    <section className="py-7 bg-white">
-      <div className="max-w-3xl mx-auto text-center px-3">
+    <section className="py-7 pt-10 bg-white">
+      <div className="max-w-3xl mx-auto text-center px-6">
 
         <h2 className="text-4xl text-gray-600 font-medium">
-          Open a Zerodha account
+          Invest in everything
         </h2>
 
         <p className="text-xl text-gray-500 leading-8 mb-5 mt-2">
-          Modern platforms and apps, ₹0 investments, and flat ₹20 intraday and
-          F&amp;O trades.
+          Online platform to invest in stocks, derivatives, mutual funds, ETFs, bonds, and more.
         </p>
 
         <Button
@@ -26,4 +25,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default Invest;
