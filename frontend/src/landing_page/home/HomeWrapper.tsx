@@ -12,15 +12,15 @@ import Invest from './Invest'
 function HomeWrapper() {
   return (
     <>
-        <div className="pt-15">
-          <MyNavbar/>
+        <div>
+          {/* <MyNavbar/> */}
           <Hero />
           <Invest/>
           <Trust />
           <Pricing />
           <Education />
           <SignUp/>
-          <Footer />
+          {/* <Footer /> */}
         </div>
     </>
   )

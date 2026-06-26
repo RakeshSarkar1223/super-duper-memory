@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 // import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom";
 function Invest() {
   return (
     <section className="py-7 pt-10 bg-white">
@@ -17,7 +18,7 @@ function Invest() {
         <Button
           className="bg-[#5790d5] hover:bg-[#10151a] border-0 rounded-xl px-7 py-2 text-lg font-semibold shadow-none text-white cursor-pointer transition-colors"
         >
-          Sign up for free
+          <Link to="/signup">Sign up for free</Link>
         </Button>
 
       </div>
