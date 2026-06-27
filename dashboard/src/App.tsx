@@ -1,11 +1,14 @@
 // import { useState } from 'react'
-
+import { Route, Routes } from "react-router-dom"
+import Home from "./components/Home"
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
     <>
-      <h1 className='bg-yellow-200 text-center text-3xl'>Hello from App</h1>
+      <Routes>
+        <Route path="/*" element={<Home/>}/>
+      </Routes>
     </>
   )
 }
