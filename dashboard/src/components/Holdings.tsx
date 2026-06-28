@@ -1,12 +1,37 @@
-import React from "react";
-import { holdings } from "../data/data";
+import React, {useState, useEffect} from "react";
+// import { holdings } from "../data/data";
+import axios from 'axios'
 
 const Holdings = () => {
+
+  const [holdings, setHoldings] = useState([]);
+  let totalVal = 0;
+  let currVal = 0;
+  let avgPnl = 0;
+  let percent = 0;
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3002/getHoldings");
+
+        if (response.status === 200) {
+          setHoldings(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching holdings:", error);
+      }
+    };
+
+    loadData();
+  }, []);
+
+  // console.log(holdings);
+
   return (
     <>
       <h3 className="text-[18px] font-medium text-gray-700 mb-5">Holdings ({holdings.length})</h3>
 
-      <div className="border border-gray-100 rounded-md overflow-hidden bg-white shadow-sm">
+      <div className="border border-gray-100 rounded-md  bg-white shadow-sm">
         <table className="w-full border-collapse text-left">
           <thead>
             <tr className="bg-gray-50 border-b border-gray-100">
@@ -26,7 +51,10 @@ const Holdings = () => {
               const invested = h.qty * h.avg;
               const pnl = curVal - invested;
               const isUp = pnl >= 0;
-
+              totalVal += invested;
+              currVal +=curVal;
+              avgPnl += pnl; 
+              percent = ((avgPnl/totalVal) * 100).toFixed(2);
               return (
                 <tr key={i} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
                   <td className="text-[13px] font-medium text-[#4184f3] p-3.5 pl-5">{h.name}</td>
@@ -52,15 +80,16 @@ const Holdings = () => {
 
       <div className="flex gap-10 mt-8 border-t border-gray-100 pt-6">
         <div>
-          <h5 className="text-[22px] font-light text-gray-700">29,875.55</h5>
+          <h5 className="text-[22px] font-light text-gray-700">{totalVal}</h5>
           <p className="text-[12px] text-gray-400 mt-1">Total investment</p>
         </div>
         <div>
-          <h5 className="text-[22px] font-light text-gray-700">31,428.95</h5>
+          <h5 className="text-[22px] font-light text-gray-700">{currVal.toFixed(2)}</h5>
           <p className="text-[12px] text-gray-400 mt-1">Current value</p>
         </div>
         <div>
-          <h5 className="text-[22px] font-medium text-[#4caf50]">1,553.40 (+5.20%)</h5>
+          
+          <h5 className={`text-[22px] font-medium ${percent >= 0 ? `text-[#4caf50]` : `text-[#df514c]`}`}>{avgPnl.toFixed(2)} ({percent >= 0 ? +percent : -percent}%)</h5>
           <p className="text-[12px] text-gray-400 mt-1">P&L</p>
         </div>
       </div>

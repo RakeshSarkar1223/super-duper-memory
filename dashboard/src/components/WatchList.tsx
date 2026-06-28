@@ -1,7 +1,11 @@
 import React from "react";
 import { watchlist } from "../data/data";
+// import axios from "axios";
+// import { log } from "console";
 
 const WatchList = () => {
+  
+
   return (
     <div className="w-[350px] min-w-[350px] max-w-[350px] border-r border-gray-100 bg-white h-full flex flex-col select-none">
       {/* Search Bar */}
@@ -33,10 +37,14 @@ const WatchList = () => {
             key={i}
             className="flex items-center justify-between px-5 h-[50px] border-b border-gray-100 hover:bg-gray-50 cursor-pointer group transition-colors"
           >
-            <span className="text-[13px] font-medium text-gray-700">{stock.name}</span>
+            <span className="text-[13px] font-medium text-gray-700">
+              {stock.name}
+            </span>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-4 group-hover:hidden">
-                <span className={`text-[11px] ${stock.isDown ? "text-[#df514c]" : "text-[#4caf50]"}`}>
+                <span
+                  className={`text-[11px] ${stock.isDown ? "text-[#df514c]" : "text-[#4caf50]"}`}
+                >
                   {stock.percent}
                 </span>
                 <span
@@ -47,7 +55,7 @@ const WatchList = () => {
                   {stock.price.toFixed(2)}
                 </span>
               </div>
-              
+
               {/* Hover actions */}
               <div className="hidden group-hover:flex items-center gap-2">
                 <button className="bg-[#4184f3] text-white text-[10px] font-semibold px-2 py-0.5 rounded shadow-sm hover:bg-[#3574de] transition-colors">
