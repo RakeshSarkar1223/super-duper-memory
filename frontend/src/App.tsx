@@ -16,7 +16,7 @@ function App() {
 
   return (
     <>
-      <div className="pt-15 min-h-full">
+      <div className="pt-15 ">
         <MyNavbar />
         <Routes>
           <Route path="/" element={<HomeWrapper />} />
