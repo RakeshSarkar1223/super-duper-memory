@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import {useAuth} from "../context/AuthContext.tsx";
 
 import logo from "../assets/logo.png";
 
 const Menu = () => {
+  const {user} = useAuth();
+  // console.log(user);
   const [idx, setIdx] = useState(0);
   const handleClick = (i) => {
     setIdx(i);
@@ -128,10 +131,10 @@ const Menu = () => {
           onClick={handleProfileClick}
         >
           <div className="w-6 h-6 rounded-full bg-[#fcf1ed] border border-[#ffdecb] text-[#ff5722] text-[10px] font-semibold flex items-center justify-center">
-            ZU
+            {user?.name?.charAt(0)}
           </div>
           <span className="text-[12px] font-medium text-gray-500 group-hover:text-[#ff5722] uppercase">
-            USERID
+            {user?.name}
           </span>
         </div>
       </div>

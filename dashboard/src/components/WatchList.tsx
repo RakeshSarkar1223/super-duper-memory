@@ -1,10 +1,26 @@
-import React from "react";
-import { watchlist } from "../data/data";
-// import axios from "axios";
+import React, { useEffect, useState } from "react";
+// import { watchlist } from "../data/data";
+import axios from "axios";
 // import { log } from "console";
 
+
 const WatchList = () => {
+  const [watchlist, setWatchlist] = useState([]);
   
+  useEffect(() => {
+    const loadData = async () => {
+      try{
+        const responce = await axios.get("http://localhost:3002/getWatch", {withCredentials:true})
+        if(responce.data.success){
+          setWatchlist(responce.data.watch);
+        }
+      }
+      catch(err){
+        console.log(err);
+      }
+    }
+    loadData();
+  })
 
   return (
     <div className="w-[350px] min-w-[350px] max-w-[350px] border-r border-gray-100 bg-white h-full flex flex-col select-none">
