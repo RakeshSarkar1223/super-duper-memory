@@ -16,13 +16,14 @@ export const AuthProvider = ({ children }) => {
                         withCredentials: true,
                     }
                 );
-
+                // console.log(response.status)
                 if (response.data.success) {
                     setUser(response.data.user);
                 }
             } catch (err) {
                 console.log("No active session");
                 setUser(null);
+                window.location.href = "http://localhost:5174/signup"
             } finally {
                 setLoading(false);
             }
