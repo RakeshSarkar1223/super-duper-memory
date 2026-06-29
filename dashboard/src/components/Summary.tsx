@@ -1,10 +1,11 @@
 import React from "react";
-
+import{useAuth} from '../context/AuthContext.tsx';
 const Summary = () => {
+  const {user} = useAuth();
   return (
     <>
       <div className="pb-4 border-b border-gray-100">
-        <h6 className="text-[20px] font-normal text-gray-700">Hi, User!</h6>
+        <h6 className="text-[20px] font-normal text-gray-700">Hi, {user?.name.split(" ")[0]}</h6>
       </div>
 
       <div className="grid grid-cols-2 gap-8 items-start">

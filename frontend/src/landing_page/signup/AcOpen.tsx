@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ac_open from "../../assets/images/account_open.svg";
 import { Button } from "@mui/material";
 // import { Link } from "react-router-dom";
+import axios from 'axios';
+import { redirect } from "react-router-dom";
 
 function AcOpen() {
   const [number, setNumber] = useState("");
@@ -22,11 +24,25 @@ function AcOpen() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
+    console.log("submitted")
     e.preventDefault();
     if(toggleSignup){
-        
+        const responce = await axios.post("http://localhost:3002/addUser",{
+            phone:number,
+            name:name,
+            password:pass,
+            email:email,
+        }, {withCredentials:true});
+        if(responce.status === 400){
+            window.alert(responce.data);
+            redirect("http://localhost:5174/signup");
+        }
+        if(responce.data.success){
+            window.location.href = "http://localhost:5173";
+        }
     }
+    
   };
 
   return (
